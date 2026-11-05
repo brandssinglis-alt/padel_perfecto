@@ -21,5 +21,12 @@ team B (R1, R2, red) the far half. Net position is about 2.5–3.5 m from the ne
 4. `npm ci` if needed, then `node validate.mjs`, then
    `REMOTION_CHROME=$(ls -d /opt/pw-browsers/chromium_headless_shell-*/*/chrome-headless-shell | head -1) node render.mjs <ids>`.
 5. Extract a frame from each beat with ffmpeg and look at it to check that players and arrows match the text.
-6. Commit the scenes, move the concepts from the backlog to published (status: rendered, awaiting review), and push.
-7. Report the videos for human review. Never publish publicly without the owner's approval.
+6. Copy each MP4 to `docs/videos/<id>.mp4`. GitHub Pages serves it at
+   `https://brandssinglis-alt.github.io/padel_perfecto/videos/<id>.mp4` (all lowercase), which is the public URL that Instagram and TikTok fetch when posting.
+   Commit the scenes and videos, move the concepts from the backlog to published (status: rendered, awaiting review), and push.
+7. Report the videos for human review, with each video's public URL, caption and hashtags. Never publish publicly without the owner's approval.
+
+## Posting (only after the owner approves)
+- Instagram (@padel_perfecto) goes through the Composio Instagram connector: create a REELS container with the public video URL and caption, then publish.
+- TikTok goes through the Composio TikTok connector as an inbox draft (publish=false). The owner adds a sound and posts it from the app.
+- After posting, set the status in `content/published.md` to posted, with the date.
