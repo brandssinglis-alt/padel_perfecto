@@ -1,0 +1,29 @@
+{
+  "id": "001-lob-to-take-the-net",
+  "level": "Beginner",
+  "hook": "Stuck at the back? Lob your way to the net",
+  "beats": [
+    { "text": "Rivals own the net. You're pinned at the back glass.", "seconds": 3.2,
+      "players": { "A1": [7.5, 18.2], "A2": [2.5, 18.2], "B1": [2.6, 7.2], "B2": [7.4, 7.2] },
+      "ball": [7.2, 17.6],
+      "zone": { "x": 0, "y": 5, "w": 10, "h": 5, "label": "THEIR ZONE" } },
+    { "text": "Play a high, deep lob over their heads.", "seconds": 3.2,
+      "players": { "A1": [7.5, 18.2], "A2": [2.5, 18.2], "B1": [2.6, 7.2], "B2": [7.4, 7.2] },
+      "ball": [2.6, 1.6],
+      "arrows": [{ "from": [7.2, 17.6], "to": [2.6, 1.6], "color": "ball" }] },
+    { "text": "They must turn and run back. Move up together, side by side.", "seconds": 3.6,
+      "players": { "A1": [7.0, 13.2], "A2": [3.0, 13.2], "B1": [2.6, 2.4], "B2": [6.2, 4.6] },
+      "ball": [2.6, 1.6],
+      "arrows": [
+        { "from": [7.5, 18.2], "to": [7.0, 13.6], "color": "A" },
+        { "from": [2.5, 18.2], "to": [3.0, 13.6], "color": "A" },
+        { "from": [2.6, 7.2], "to": [2.6, 2.8], "color": "B" } ] },
+    { "text": "Now the net is yours. Volley their weak reply.", "seconds": 3.4,
+      "players": { "A1": [6.6, 12.8], "A2": [3.2, 13.0], "B1": [2.6, 2.4], "B2": [6.2, 4.6] },
+      "ball": [6.2, 12.4],
+      "zone": { "x": 0, "y": 10, "w": 10, "h": 5, "label": "YOUR ZONE" } }
+  ],
+  "cta": "Follow for a padel tactic every day",
+  "caption": "The lob isn't defence. It's how you take the net back. Try it next match and tell me how it went.",
+  "hashtags": ["padel", "padeltips", "padelcoach", "padeltactics", "padelbeginner"]
+}
