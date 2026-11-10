@@ -31,8 +31,9 @@ team B (R1, R2, red) the far half. Net position is about 2.5–3.5 m from the ne
 ## Voiceover (only after the owner approves a video's text)
 Weekly batches render silent, so text changes never cost a voiceover. Once the owner approves a video:
 1. Set `"voiced": true` in its scene file.
-2. `node voice.mjs <ids>` lists the missing clips as JSON lines `{file, text, voiceId}`. Make each with the Composio ElevenLabs
-   `ELEVENLABS_TEXT_TO_SPEECH` tool (that voice_id, the text exactly as listed), download the returned mp3 to `content/voice/<file>`,
+2. `node voice.mjs <ids>` lists the missing clips as JSON lines `{file, text, voiceId}`. Make each with the ElevenLabs connector
+   (`creative_generate_speech`, that voice_id, the text exactly as listed, model from `content/voice/config.json`), poll
+   `creative_get_flow_run_status`, and curl the first take's `content_url` (host elevenlabsusercontent.com) to `content/voice/<file>`,
    and run `node voice.mjs <ids>` again until it reports all clips present. If `ELEVENLABS_API_KEY` is set, `voice.mjs` makes them itself.
 3. Render as usual. `render.mjs` plays each clip at the start of its part and lengthens a beat when the speech runs over.
 4. Check the audio track, then copy to `docs/videos/` as before, and commit the scene, the clips and the video.
