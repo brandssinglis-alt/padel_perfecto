@@ -4,6 +4,7 @@ Generates short vertical padel coaching videos (TikTok / Instagram Reels) from s
 
 ## Layout
 - `content/scenes/<id>.json`: one video each. Schema in `src/types.ts`.
+- `content/plan.md`: the agreed content plan (chapters, style, schedule, action register). Read it before planning or making videos, and pick concepts that fit its chapters.
 - `content/backlog.md`: concept ideas not yet made. `content/published.md`: what's been posted.
 - `src/Court.tsx`: the animated court template. `render.mjs`: renders scenes to `out/<id>.mp4`.
 - `validate.mjs`: run before every render.
