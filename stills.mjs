@@ -16,6 +16,6 @@ fs.mkdirSync("out/stills", { recursive: true });
 for (const t of times) {
   const output = `out/stills/${scene.id}-${t}.png`;
   await renderStill({ composition, serveUrl, output, inputProps, frame: Math.round(Number(t) * 30), browserExecutable,
-    chromiumOptions: { gl: "swangle" }, scale: 0.5 });
+    chromiumOptions: { gl: "swangle" }, scale: 0.5, onBrowserLog: (l) => { if (l.type === "error" || l.type === "warning") console.log("[browser]", l.text.slice(0, 300)); } });
   console.log(output);
 }

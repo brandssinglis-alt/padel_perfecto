@@ -8,7 +8,7 @@ export type Look = { shirt: string; shorts: string; skin: string; hair: string; 
 
 const mat = (color: string, rough = 0.6) => <meshStandardMaterial color={color} roughness={rough} />;
 
-const Racket: React.FC<{ rim: string }> = ({ rim }) => {
+export const Racket: React.FC<{ rim: string }> = ({ rim }) => {
   const face = useMemo(() => {
     const c = document.createElement("canvas");
     c.width = 256; c.height = 256;
