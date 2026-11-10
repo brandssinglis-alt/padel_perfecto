@@ -1,0 +1,29 @@
+{
+  "id": "002-move-as-a-pair",
+  "level": "Beginner",
+  "hook": "Play like you're tied to your partner",
+  "beats": [
+    { "text": "Picture a 3 m rope tying you to your partner.", "seconds": 3.2,
+      "players": { "A1": [7.0, 13.0], "A2": [3.0, 13.0], "B1": [2.6, 2.0], "B2": [7.4, 2.0] },
+      "ball": [5.0, 13.0],
+      "arrows": [{ "from": [3.6, 13.0], "to": [6.4, 13.0], "color": "A" }] },
+    { "text": "Ball goes wide on your side? You cover it. P slides to the middle.", "seconds": 3.8,
+      "players": { "A1": [8.4, 13.0], "A2": [5.0, 13.2], "B1": [2.6, 2.0], "B2": [7.4, 2.0] },
+      "ball": [9.0, 12.8],
+      "arrows": [
+        { "from": [7.0, 13.0], "to": [8.2, 13.0], "color": "A" },
+        { "from": [3.0, 13.2], "to": [4.8, 13.2], "color": "A" } ] },
+    { "text": "Lobbed? You both go back together. Never one up, one back.", "seconds": 3.8,
+      "players": { "A1": [7.4, 17.6], "A2": [2.6, 17.6], "B1": [2.6, 7.0], "B2": [7.4, 7.0] },
+      "ball": [7.0, 18.4],
+      "arrows": [
+        { "from": [7.0, 13.0], "to": [7.4, 17.2], "color": "A" },
+        { "from": [3.0, 13.0], "to": [2.6, 17.2], "color": "A" } ] },
+    { "text": "Keep the rope tight and the middle gap stays closed.", "seconds": 3.2,
+      "players": { "A1": [7.0, 13.0], "A2": [3.0, 13.0], "B1": [2.6, 2.0], "B2": [7.4, 2.0] },
+      "zone": { "x": 3.0, "y": 11.5, "w": 4.0, "h": 3.0, "label": "NO GAP" } }
+  ],
+  "cta": "Follow for a padel tactic every day",
+  "caption": "Most points at club level are lost in the gap between partners. Do you and your partner move together, or does one of you get stranded?",
+  "hashtags": ["padel", "padeltips", "padelbeginner", "padeldoubles", "padelcoach"]
+}

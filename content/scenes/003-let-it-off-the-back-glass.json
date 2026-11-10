@@ -1,0 +1,31 @@
+{
+  "id": "003-let-it-off-the-back-glass",
+  "level": "Beginner",
+  "hook": "Stop hitting deep balls before the glass",
+  "beats": [
+    { "text": "Deep ball coming at you? Don't rush it before it reaches the glass.", "seconds": 3.6,
+      "players": { "A1": [7.4, 17.0], "A2": [2.6, 17.0], "B1": [2.8, 7.0], "B2": [7.2, 7.0] },
+      "ball": [7.6, 18.6],
+      "arrows": [{ "from": [2.8, 7.0], "to": [7.6, 18.6], "color": "ball" }] },
+    { "text": "Turn side-on and step back with it. Let it hit the back glass.", "seconds": 3.6,
+      "players": { "A1": [7.0, 18.0], "A2": [2.6, 17.4], "B1": [2.8, 7.0], "B2": [7.2, 7.0] },
+      "ball": [7.8, 19.9],
+      "arrows": [
+        { "from": [7.6, 18.6], "to": [7.8, 19.9], "color": "ball" },
+        { "from": [7.4, 17.0], "to": [7.0, 17.8], "color": "A" } ] },
+    { "text": "It bounces back off the glass, slower. Move forward to meet it.", "seconds": 3.6,
+      "players": { "A1": [7.2, 16.4], "A2": [2.6, 17.4], "B1": [2.8, 7.0], "B2": [7.2, 7.0] },
+      "ball": [7.4, 16.8],
+      "arrows": [
+        { "from": [7.8, 19.9], "to": [7.4, 16.8], "color": "ball" },
+        { "from": [7.0, 18.0], "to": [7.2, 16.6], "color": "A" } ] },
+    { "text": "Now you have time for a controlled shot. The glass is your friend.", "seconds": 3.4,
+      "players": { "A1": [7.2, 16.4], "A2": [2.6, 17.4], "B1": [2.8, 7.0], "B2": [7.2, 7.0] },
+      "ball": [5.0, 7.8],
+      "arrows": [{ "from": [7.4, 16.8], "to": [5.0, 7.8], "color": "ball" }],
+      "zone": { "x": 0, "y": 16.95, "w": 10, "h": 3.05, "label": "GLASS ZONE" } }
+  ],
+  "cta": "Follow for a padel tactic every day",
+  "caption": "New players fight the back glass. Good players wait for it. Which do you do when a deep ball comes at you?",
+  "hashtags": ["padel", "padeltips", "padelbeginner", "padelglass", "padelcoach"]
+}

@@ -1,0 +1,30 @@
+{
+  "id": "006-vibora-where-to-aim",
+  "level": "Advanced",
+  "hook": "Where should your vibora go?",
+  "beats": [
+    { "text": "They lob you at the net. Don't give it up: hit a vibora.", "seconds": 3.4,
+      "players": { "A1": [7.2, 14.6], "A2": [3.2, 13.4], "B1": [2.6, 2.2], "B2": [7.4, 2.2] },
+      "ball": [7.2, 14.2],
+      "arrows": [{ "from": [7.2, 13.2], "to": [7.2, 14.4], "color": "A" }] },
+    { "text": "Aim deep, at their side glass, near the back corner.", "seconds": 3.6,
+      "players": { "A1": [7.2, 14.6], "A2": [3.2, 13.4], "B1": [2.6, 2.2], "B2": [7.4, 2.2] },
+      "ball": [0.8, 3.4],
+      "arrows": [{ "from": [7.2, 14.2], "to": [0.8, 3.4], "color": "ball" }],
+      "zone": { "x": 0, "y": 1.0, "w": 2.5, "h": 4.0, "label": "TARGET" } },
+    { "text": "The slice makes it skid off the side glass and stay low.", "seconds": 3.6,
+      "players": { "A1": [7.0, 13.6], "A2": [3.2, 13.2], "B1": [1.4, 2.0], "B2": [7.0, 2.6] },
+      "ball": [0.2, 2.4],
+      "arrows": [
+        { "from": [0.8, 3.4], "to": [0.2, 2.4], "color": "ball" },
+        { "from": [2.6, 2.2], "to": [1.5, 2.0], "color": "B" } ] },
+    { "text": "Their reply is weak and late. You both keep the net.", "seconds": 3.2,
+      "players": { "A1": [6.8, 12.8], "A2": [3.2, 12.8], "B1": [1.4, 2.0], "B2": [7.0, 2.6] },
+      "ball": [3.6, 12.6],
+      "arrows": [{ "from": [0.4, 2.2], "to": [3.6, 12.6], "color": "ball" }],
+      "zone": { "x": 0, "y": 10, "w": 10, "h": 5, "label": "YOUR NET" } }
+  ],
+  "cta": "Follow for a padel tactic every day",
+  "caption": "A vibora isn't about power. Aim it at their side glass near the back corner so it skids low. Where do you aim yours?",
+  "hashtags": ["padel", "vibora", "padeltactics", "padeladvanced", "padelcoach"]
+}

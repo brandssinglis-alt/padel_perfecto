@@ -1,0 +1,29 @@
+{
+  "id": "005-chiquita-to-win-the-net",
+  "level": "Intermediate",
+  "hook": "The soft shot that wins back the net",
+  "beats": [
+    { "text": "Rivals at the net, you're at the back. No time to lob well.", "seconds": 3.4,
+      "players": { "A1": [7.4, 17.6], "A2": [2.6, 17.6], "B1": [2.8, 7.0], "B2": [7.2, 7.0] },
+      "ball": [7.2, 17.0] },
+    { "text": "Play a chiquita: a slow, low ball that dips at their feet.", "seconds": 3.6,
+      "players": { "A1": [7.4, 17.6], "A2": [2.6, 17.6], "B1": [2.8, 7.0], "B2": [7.2, 7.0] },
+      "ball": [6.8, 8.0],
+      "arrows": [{ "from": [7.2, 17.0], "to": [6.8, 8.0], "color": "ball" }],
+      "zone": { "x": 0, "y": 7.5, "w": 10, "h": 2.5, "label": "AT THEIR FEET" } },
+    { "text": "They must volley up from low. As it lands, you both move in.", "seconds": 3.6,
+      "players": { "A1": [7.0, 13.4], "A2": [3.0, 13.4], "B1": [2.8, 7.0], "B2": [7.0, 7.4] },
+      "ball": [6.8, 8.0],
+      "arrows": [
+        { "from": [7.4, 17.6], "to": [7.0, 13.8], "color": "A" },
+        { "from": [2.6, 17.6], "to": [3.0, 13.8], "color": "A" } ] },
+    { "text": "Their reply floats up. Now you're the ones at the net.", "seconds": 3.2,
+      "players": { "A1": [6.8, 12.8], "A2": [3.2, 12.8], "B1": [2.8, 7.0], "B2": [7.0, 7.4] },
+      "ball": [6.8, 12.4],
+      "arrows": [{ "from": [6.8, 8.0], "to": [6.8, 12.4], "color": "ball" }],
+      "zone": { "x": 0, "y": 10, "w": 10, "h": 5, "label": "YOUR NET" } }
+  ],
+  "cta": "Follow for a padel tactic every day",
+  "caption": "The lob isn't the only way back to the net. A soft chiquita at their feet forces a weak volley. Do you use it, or always go for the lob?",
+  "hashtags": ["padel", "padeltips", "chiquita", "padeltactics", "padelcoach"]
+}

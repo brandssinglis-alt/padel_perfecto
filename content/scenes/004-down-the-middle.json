@@ -1,0 +1,31 @@
+{
+  "id": "004-down-the-middle",
+  "level": "Intermediate",
+  "hook": "Not sure where to hit? Down the middle",
+  "beats": [
+    { "text": "All four at the net and you have to choose a target.", "seconds": 3.2,
+      "players": { "A1": [7.2, 13.0], "A2": [2.8, 13.0], "B1": [2.8, 7.0], "B2": [7.2, 7.0] },
+      "ball": [6.8, 12.4] },
+    { "text": "Volley it down the middle, between the two rivals.", "seconds": 3.2,
+      "players": { "A1": [7.2, 13.0], "A2": [2.8, 13.0], "B1": [2.8, 7.0], "B2": [7.2, 7.0] },
+      "ball": [5.0, 7.4],
+      "arrows": [{ "from": [6.8, 12.4], "to": [5.0, 7.4], "color": "ball" }],
+      "zone": { "x": 4.0, "y": 3.5, "w": 2.0, "h": 5.0, "label": "MIDDLE" } },
+    { "text": "Two players, one ball. Who takes it? Doubt costs them.", "seconds": 3.4,
+      "players": { "A1": [7.2, 13.0], "A2": [2.8, 13.0], "B1": [4.0, 6.6], "B2": [6.0, 6.6] },
+      "ball": [5.0, 7.4],
+      "arrows": [
+        { "from": [2.8, 7.0], "to": [3.9, 6.6], "color": "B" },
+        { "from": [7.2, 7.0], "to": [6.1, 6.6], "color": "B" } ] },
+    { "text": "From the middle they have no angle to your side walls.", "seconds": 3.4,
+      "players": { "A1": [6.4, 12.8], "A2": [3.6, 12.8], "B1": [4.0, 6.6], "B2": [6.0, 6.6] },
+      "ball": [5.2, 12.2],
+      "arrows": [
+        { "from": [5.0, 7.4], "to": [5.2, 12.2], "color": "ball" },
+        { "from": [7.2, 13.0], "to": [6.5, 12.8], "color": "A" },
+        { "from": [2.8, 13.0], "to": [3.5, 12.8], "color": "A" } ] }
+  ],
+  "cta": "Follow for a padel tactic every day",
+  "caption": "When in doubt, down the middle. It creates confusion and takes away their angles. Who takes the middle ball in your pair?",
+  "hashtags": ["padel", "padeltips", "padeltactics", "padeldoubles", "padelcoach"]
+}
