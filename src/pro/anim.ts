@@ -69,7 +69,7 @@ type Compiled = {
 
 const cache = new WeakMap<ProScene, Compiled>();
 
-export const SHOT_H: Record<ShotType, number> = { forehand: 0.9, backhand: 0.9, volley: 1.15, bigswing: 1.0, smash: 2.45, serve: 0.75, lob: 0.85 };
+export const SHOT_H: Record<ShotType, number> = { forehand: 0.9, backhand: 0.9, volley: 1.15, bigswing: 1.0, smash: 2.7, serve: 0.75, lob: 0.85 };
 export const SHOT_SIDE: Record<ShotType, number> = { forehand: 0.45, backhand: -0.45, volley: 0.4, bigswing: 0.5, smash: 0.25, serve: 0.4, lob: 0.45 };
 const SHOT_SPEED: Record<ShotType, number> = { forehand: 13, backhand: 12, volley: 12, bigswing: 18, smash: 20, serve: 9, lob: 7 };
 const SHOT_ARC: Record<ShotType, number> = { forehand: 0.6, backhand: 0.6, volley: 0.25, bigswing: 0.5, smash: 0, serve: 0.6, lob: 4.5 };

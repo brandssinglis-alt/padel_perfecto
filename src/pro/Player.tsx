@@ -1,3 +1,4 @@
+// EXPERIMENTAL, not used by the template: Brandon judged this rig worse than the code-built Athlete (2026-11-10).
 // Rigged pro player: a skinned, smooth mannequin (Quaternius Universal Animation Library, CC0,
 // content/models/) dressed with vertex colours (shirt, shorts, socks, trainers) and a racket.
 // Legs and body come from motion-captured clips (athletic stance, jog). Both arms are driven by

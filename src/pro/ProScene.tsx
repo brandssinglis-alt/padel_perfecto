@@ -7,9 +7,8 @@ import { useThree } from "@react-three/fiber";
 import type { Point } from "../types";
 import { C } from "../timeline";
 import { Arrow, CourtModel, Zone, useTextTexture } from "../Court3D";
-import { type Look } from "./Athlete";
-import { RigPlayer, usePlayerAssets, type RigLook } from "./Player";
-import { COVER, INTRO, OUTRO, PIDS, actionAt, ballAt, cameraAt, clock, position, runPhase, velocity, durationSeconds } from "./anim";
+import { Athlete, type Look } from "./Athlete";
+import { COVER, INTRO, OUTRO, PIDS, ballAt, cameraAt, clock, poseAt, position, runPhase, velocity, durationSeconds } from "./anim";
 import type { Pid, ProScene, Tone } from "./types";
 
 export const proDurationFrames = (s: ProScene, fps: number) => Math.round(durationSeconds(s) * fps);
@@ -35,8 +34,6 @@ const LOOKS: Record<Pid, Look> = {
   B2: { shirt: C.B, shorts: "#111827", skin: "#a8714a", hair: "#1a1a1a", height: 0.98, build: 1.04 },
 };
 const RIM: Record<Pid, string> = { A1: "#facc15", A2: "#f8fafc", B1: "#f8fafc", B2: "#facc15" };
-const RIG_LOOKS = Object.fromEntries((Object.keys(LOOKS) as Pid[]).map((p) => [p, { ...LOOKS[p], rim: RIM[p] }])) as Record<Pid, RigLook>;
-const wrap = (a: number) => { while (a > Math.PI) a -= 2 * Math.PI; while (a < -Math.PI) a += 2 * Math.PI; return a; };
 const NAMES: Record<Pid, string> = { A1: "YOU", A2: "P", B1: "R1", B2: "R2" };
 
 const CameraRig: React.FC<{ scene: ProScene; T: number; t: number }> = ({ scene, T, t }) => {
@@ -135,7 +132,6 @@ const fade = (local: number, at = 0) => interpolate(local, [at, at + 0.35], [0, 
 export const ProSceneComp: React.FC<{ scene: ProScene }> = ({ scene }) => {
   const frame = useCurrentFrame();
   const { fps, width, height } = useVideoConfig();
-  const assets = usePlayerAssets();
   const t = frame / fps;
   const ck = clock(scene, t);
   const { T, beat, local } = ck;
@@ -152,7 +148,7 @@ export const ProSceneComp: React.FC<{ scene: ProScene }> = ({ scene }) => {
 
   return (
     <AbsoluteFill style={{ background: C.bg, fontFamily: FONT }}>
-      {assets && <ThreeCanvas width={width} height={height} shadows camera={{ fov: 38, near: 0.1, far: 200 }} gl={{ antialias: true }} style={{ background: C.bg }}>
+      <ThreeCanvas width={width} height={height} shadows camera={{ fov: 38, near: 0.1, far: 200 }} gl={{ antialias: true }} style={{ background: C.bg }}>
         <CameraRig scene={scene} T={T} t={t} />
         <color attach="background" args={[C.bg]} />
         <fog attach="fog" args={[C.bg, 32, 70]} />
@@ -172,30 +168,18 @@ export const ProSceneComp: React.FC<{ scene: ProScene }> = ({ scene }) => {
           const [x, z] = W3(p);
           const v = velocity(scene, who, T);
           const base = who[0] === "A" ? 0 : Math.PI;
-          // turn the body a little towards the ball; when running, turn towards the run
-          // (running backwards plays the jog in reverse instead of turning away from the net)
-          let tilt = 0;
+          // turn the body a little towards the ball
+          let face = base;
           if (ball) {
-            const d = wrap(Math.atan2(-(ball[0] - p[0]), -(ball[2] - p[1])) - base);
-            tilt = Math.max(-0.6, Math.min(0.6, d * 0.35));
+            const ang = Math.atan2(-(ball[0] - p[0]), -(ball[2] - p[1]));
+            let d = ang - base; while (d > Math.PI) d -= 2 * Math.PI; while (d < -Math.PI) d += 2 * Math.PI;
+            face = base + Math.max(-0.6, Math.min(0.6, d * 0.35));
           }
-          const act = actionAt(scene, who, T);
-          const speed = Math.hypot(v[0], v[1]);
-          const sd = act.shot?.d ?? 9;
-          const swingW = Math.max(0, Math.min(1, Math.min((sd + 0.95) / 0.3, (0.95 - sd) / 0.3)));
-          const run = (1 - swingW) * Math.max(0, Math.min(1, (speed - 0.6) / 1.4));
-          let rel = 0, back = false;
-          if (speed > 0.05) {
-            rel = wrap(Math.atan2(-v[0], -v[1]) - base);
-            if (Math.abs(rel) > Math.PI / 2) { rel = wrap(rel - Math.PI); back = true; }
-          }
-          const face = base + tilt + (rel - tilt) * run;
           return (
             <group key={who}>
               <group scale={[Math.max(0.001, pop), Math.max(0.001, pop), Math.max(0.001, pop)]} position={[x, 0, z]}>
-                <group rotation={[0, face + Math.PI, 0]} scale={[LOOKS[who].height * LOOKS[who].build, LOOKS[who].height, LOOKS[who].height * LOOKS[who].build]}>
-                  <RigPlayer assets={assets} look={RIG_LOOKS[who]} act={act} run={run} dist={runPhase(scene, who, T)} back={back} T={T} />
-                </group>
+                <Athlete pos={[0, 0]} facing={face} pose={poseAt(scene, who, T)} run={runPhase(scene, who, T)}
+                  speed={Math.hypot(v[0], v[1])} look={LOOKS[who]} rim={RIM[who]} />
               </group>
               {scene.labels !== false && !inOutro && Math.hypot(cam.pos[0] - x, cam.pos[2] - z) > 7 && !(b?.badges ?? []).some((bd) => bd.who === who && local >= (bd.at ?? 0)) && (
                 <Tag text={NAMES[who]} color={who[0] === "A" ? C.A : C.B} pos={[x, 2.25, z]} scale={0.8} />
@@ -222,7 +206,7 @@ export const ProSceneComp: React.FC<{ scene: ProScene }> = ({ scene }) => {
           const [x, z] = W3(position(scene, bb.who, T));
           return <Bubble key={`${beat}u${i}`} text={bb.text} pos={[x, 3.0, z]} k={Math.max(0.001, k)} />;
         })}
-      </ThreeCanvas>}
+      </ThreeCanvas>
 
       {/* voiceover: one clip per beat */}
       {scene.audio && scene.audio.beats.map((f, i) => f ? (
