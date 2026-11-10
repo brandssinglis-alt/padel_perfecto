@@ -12,7 +12,7 @@ const W = (p: Point): [number, number] => [p[0] - 5, p[1] - 10];
 const SERVICE = 6.95; // service lines are 6.95 m either side of the net
 
 // Text drawn onto a canvas, used for player labels and zone labels.
-const useTextTexture = (draw: (ctx: CanvasRenderingContext2D, w: number, h: number) => void, w: number, h: number, deps: unknown[]) =>
+export const useTextTexture = (draw: (ctx: CanvasRenderingContext2D, w: number, h: number) => void, w: number, h: number, deps: unknown[]) =>
   useMemo(() => {
     const c = document.createElement("canvas");
     c.width = w; c.height = h;
@@ -77,7 +77,7 @@ const Fence: React.FC<{ x: number; z0: number; z1: number; h: number }> = ({ x, 
   );
 };
 
-const CourtModel: React.FC = () => (
+export const CourtModel: React.FC = () => (
   <group>
     {/* surroundings */}
     <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.01, 0]} receiveShadow>
@@ -202,7 +202,7 @@ const Ball: React.FC<{ p: Point; lift: number; flight: number }> = ({ p, lift, f
 };
 
 // Flat dashed arrow painted on the floor.
-const Arrow: React.FC<{ from: Point; to: Point; color: string; progress: number }> = ({ from, to, color, progress }) => {
+export const Arrow: React.FC<{ from: Point; to: Point; color: string; progress: number }> = ({ from, to, color, progress }) => {
   const [x1, z1] = W(from), [x2, z2] = W(to);
   const len = Math.hypot(x2 - x1, z2 - z1) * progress;
   if (len < 0.05) return null;
@@ -231,21 +231,21 @@ const Arrow: React.FC<{ from: Point; to: Point; color: string; progress: number 
   );
 };
 
-const Zone: React.FC<{ zone: NonNullable<Scene["beats"][number]["zone"]>; opacity: number }> = ({ zone, opacity }) => {
+export const Zone: React.FC<{ zone: NonNullable<Scene["beats"][number]["zone"]>; opacity: number; fill?: string; stroke?: string }> = ({ zone, opacity, fill = "rgba(250,204,21,0.30)", stroke = C.accent }) => {
   const pxPerM = 64;
   const w = Math.round(zone.w * pxPerM), h = Math.round(zone.h * pxPerM);
   const tex = useTextTexture((ctx, cw, ch) => {
-    ctx.fillStyle = "rgba(250,204,21,0.30)"; ctx.fillRect(0, 0, cw, ch);
-    ctx.setLineDash([22, 14]); ctx.lineWidth = 8; ctx.strokeStyle = C.accent; ctx.strokeRect(4, 4, cw - 8, ch - 8);
+    ctx.fillStyle = fill; ctx.fillRect(0, 0, cw, ch);
+    ctx.setLineDash([22, 14]); ctx.lineWidth = 8; ctx.strokeStyle = stroke; ctx.strokeRect(4, 4, cw - 8, ch - 8);
     if (zone.label) {
       const size = Math.min(54, (cw * 0.9) / (zone.label.length * 0.62));
       ctx.font = `900 ${size}px Inter, Helvetica, Arial, sans-serif`;
       ctx.textAlign = "center"; ctx.textBaseline = "middle";
       ctx.lineWidth = size * 0.18; ctx.strokeStyle = "rgba(11,18,32,0.85)"; ctx.setLineDash([]);
       ctx.strokeText(zone.label, cw / 2, ch / 2);
-      ctx.fillStyle = C.accent; ctx.fillText(zone.label, cw / 2, ch / 2);
+      ctx.fillStyle = stroke; ctx.fillText(zone.label, cw / 2, ch / 2);
     }
-  }, w, h, [zone.x, zone.y, zone.w, zone.h, zone.label]);
+  }, w, h, [zone.x, zone.y, zone.w, zone.h, zone.label, fill, stroke]);
   const [x, z] = W([zone.x + zone.w / 2, zone.y + zone.h / 2]);
   return (
     <mesh position={[x, 0.015, z]} rotation={[-Math.PI / 2, 0, 0]}>

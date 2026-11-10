@@ -22,6 +22,7 @@ export const clipFile = (voiceId, text) =>
 export const sceneLines = (scene) => {
   const { voiceId } = voiceConfig();
   const line = (text) => ({ text: spoken(text), voiceId, file: clipFile(voiceId, text) });
+  if (scene.format === "pro") return { beats: scene.beats.map((b) => line(b.say ?? b.text)) };
   return { intro: line(scene.hook), beats: scene.beats.map((b) => line(b.text)), outro: line(scene.cta) };
 };
 
@@ -36,7 +37,7 @@ if (isMain) {
     const scene = JSON.parse(fs.readFileSync(`${dir}/${f}`, "utf8"));
     if (!scene.voiced) continue;
     const l = sceneLines(scene);
-    for (const x of [l.intro, ...l.beats, l.outro]) if (!fs.existsSync(`${VOICE_DIR}/${x.file}`)) missing.set(x.file, x);
+    for (const x of [l.intro, ...l.beats, l.outro].filter(Boolean)) if (!fs.existsSync(`${VOICE_DIR}/${x.file}`)) missing.set(x.file, x);
   }
   const key = process.env.ELEVENLABS_API_KEY;
   for (const x of missing.values()) {

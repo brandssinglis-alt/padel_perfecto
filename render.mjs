@@ -1,4 +1,4 @@
-// Renders every scene (add --3d for the 3D court) in content/scenes (or the ids passed as args) to out/<id>.mp4
+// Renders every scene (pro-format scenes always use the pro 3D template; add --3d for the old 3D court) in content/scenes (or the ids passed as args) to out/<id>.mp4
 // Scenes marked "voiced": true get their voiceover clips from content/voice (see voice.mjs),
 // and each part is stretched so the speech fits.
 import { bundle } from "@remotion/bundler";
@@ -20,6 +20,16 @@ const files = fs.readdirSync(dir).filter(f => f.endsWith(".json"))
 const duration = (file) => Number(execFileSync("ffprobe", ["-v", "error", "-show_entries", "format=duration",
   "-of", "csv=p=0", path.join(VOICE_DIR, file)]).toString().trim());
 
+const addVoicePro = (scene) => {
+  const l = sceneLines(scene);
+  const missing = l.beats.filter(x => !fs.existsSync(path.join(VOICE_DIR, x.file)));
+  if (missing.length) throw new Error(`${scene.id}: ${missing.length} voice clips missing, run node voice.mjs ${scene.id}`);
+  // Lengthen a beat when its line runs over (keeps any freeze point inside the beat).
+  scene.beats.forEach((b, i) => { b.seconds = Math.max(b.seconds, 0.12 + duration(l.beats[i].file) + 0.45); });
+  scene.audio = { beats: l.beats.map(x => x.file) };
+  return scene;
+};
+
 const addVoice = (scene) => {
   const l = sceneLines(scene);
   const all = [l.intro, ...l.beats, l.outro];
@@ -37,9 +47,11 @@ const serveUrl = await bundle({ entryPoint: path.resolve("src/index.ts"), public
 fs.mkdirSync("out", { recursive: true });
 for (const f of files) {
   let scene = JSON.parse(fs.readFileSync(path.join(dir, f), "utf8"));
-  if (scene.voiced) scene = addVoice(scene);
+  const pro = scene.format === "pro";
+  if (scene.voiced) scene = pro ? addVoicePro(scene) : addVoice(scene);
   const inputProps = { scene };
-  const composition = await selectComposition({ serveUrl, id: style3d ? "PadelScene3D" : "PadelScene", inputProps, browserExecutable });
+  const id = pro ? "PadelPro" : style3d ? "PadelScene3D" : "PadelScene";
+  const composition = await selectComposition({ serveUrl, id, inputProps, browserExecutable });
   const outputLocation = `out/${scene.id}.mp4`;
   await renderMedia({ composition, serveUrl, codec: "h264", outputLocation, inputProps, browserExecutable,
     chromiumOptions: { gl: "swangle" } });
