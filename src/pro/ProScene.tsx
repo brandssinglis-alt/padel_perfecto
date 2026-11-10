@@ -8,7 +8,8 @@ import type { Point } from "../types";
 import { C } from "../timeline";
 import { Arrow, CourtModel, Zone, useTextTexture } from "../Court3D";
 import { Athlete, type Look } from "./Athlete";
-import { COVER, INTRO, OUTRO, PIDS, ballAt, cameraAt, clock, poseAt, position, runPhase, velocity, durationSeconds } from "./anim";
+import { BoardPlayer } from "./Board";
+import { COVER, INTRO, OUTRO, PIDS, actionAt, isBoard, ballAt, cameraAt, clock, poseAt, position, runPhase, velocity, durationSeconds } from "./anim";
 import type { Pid, ProScene, Tone } from "./types";
 
 export const proDurationFrames = (s: ProScene, fps: number) => Math.round(durationSeconds(s) * fps);
@@ -101,7 +102,7 @@ const Ball3D: React.FC<{ scene: ProScene; T: number; camPos: [number, number, nu
   const b = ballAt(scene, T);
   if (!b) return null;
   const [bx0, bz0] = W3([b[0], b[2]]);
-  const g = Math.max(1, Math.hypot(camPos[0] - bx0, camPos[1] - b[1], camPos[2] - bz0) / 9);
+  const g = isBoard(scene) ? 2.1 : Math.max(1, Math.hypot(camPos[0] - bx0, camPos[1] - b[1], camPos[2] - bz0) / 9);
   const trail = [1, 2, 3, 4, 5].map((i) => ballAt(scene, T - i * 0.025)).filter(Boolean) as [number, number, number][];
   const [x, z] = W3([b[0], b[2]]);
   return (
@@ -141,6 +142,7 @@ export const ProSceneComp: React.FC<{ scene: ProScene }> = ({ scene }) => {
   const chapterColor = CHAPTER_COLOR[scene.chapter];
   const ball = ballAt(scene, T);
   const cam = cameraAt(scene, T, t);
+  const board = isBoard(scene);
   const teamMid = (team: "A" | "B"): Point => {
     const p = position(scene, `${team}1` as Pid, T), q = position(scene, `${team}2` as Pid, T);
     return [(p[0] + q[0]) / 2, (p[1] + q[1]) / 2];
@@ -175,13 +177,24 @@ export const ProSceneComp: React.FC<{ scene: ProScene }> = ({ scene }) => {
             let d = ang - base; while (d > Math.PI) d -= 2 * Math.PI; while (d < -Math.PI) d += 2 * Math.PI;
             face = base + Math.max(-0.6, Math.min(0.6, d * 0.35));
           }
+          const badged = (b?.badges ?? []).some((bd) => bd.who === who && local >= (bd.at ?? 0));
+          if (board) {
+            const trail = [1, 2, 3, 4, 5, 6].map((i) => position(scene, who, T - i * 0.1))
+              .map((q) => [q[0] - p[0], q[1] - p[1]] as [number, number]).filter(([dx, dz]) => Math.hypot(dx, dz) > 0.25);
+            return (
+              <group key={who} position={[x, 0, z]}>
+                <BoardPlayer name={NAMES[who]} color={who[0] === "A" ? C.A : C.B} face={face} act={actionAt(scene, who, T)}
+                  trail={trail} pop={Math.max(0.001, pop)} chip={!badged && !inOutro} />
+              </group>
+            );
+          }
           return (
             <group key={who}>
               <group scale={[Math.max(0.001, pop), Math.max(0.001, pop), Math.max(0.001, pop)]} position={[x, 0, z]}>
                 <Athlete pos={[0, 0]} facing={face} pose={poseAt(scene, who, T)} run={runPhase(scene, who, T)}
                   speed={Math.hypot(v[0], v[1])} look={LOOKS[who]} rim={RIM[who]} />
               </group>
-              {scene.labels !== false && !inOutro && Math.hypot(cam.pos[0] - x, cam.pos[2] - z) > 7 && !(b?.badges ?? []).some((bd) => bd.who === who && local >= (bd.at ?? 0)) && (
+              {scene.labels !== false && !inOutro && Math.hypot(cam.pos[0] - x, cam.pos[2] - z) > 7 && !badged && (
                 <Tag text={NAMES[who]} color={who[0] === "A" ? C.A : C.B} pos={[x, 2.25, z]} scale={0.8} />
               )}
             </group>
@@ -198,13 +211,13 @@ export const ProSceneComp: React.FC<{ scene: ProScene }> = ({ scene }) => {
           const [x, z] = W3(p);
           const y = bd.who === "A" || bd.who === "B" ? 3.2 : 3.05;
           return local >= at ? <Badge key={`${beat}b${i}`} value={val.toFixed(2)} label={bd.label ?? "LEVEL"} tone={bd.tone ?? (to > bd.from ? "green" : to < bd.from ? "red" : "grey")}
-            pos={[x, y, z]} k={Math.max(0.001, k)} delta={u > 0.05 ? to - bd.from : 0} /> : null;
+            pos={[x, y, z - (board && !(bd.who === "A" || bd.who === "B") ? 1.25 : 0)]} k={Math.max(0.001, k)} delta={u > 0.05 ? to - bd.from : 0} /> : null;
         })}
         {b && (b.bubbles ?? []).map((bb, i) => {
           if (local < bb.at) return null;
           const k = spring({ frame: frame - Math.round((ck.beatStartsReal[beat] + bb.at) * fps), fps, config: { damping: 11 } });
           const [x, z] = W3(position(scene, bb.who, T));
-          return <Bubble key={`${beat}u${i}`} text={bb.text} pos={[x, 3.0, z]} k={Math.max(0.001, k)} />;
+          return <Bubble key={`${beat}u${i}`} text={bb.text} pos={[x, 3.0, z - (board ? 1.3 : 0)]} k={Math.max(0.001, k)} />;
         })}
       </ThreeCanvas>
 

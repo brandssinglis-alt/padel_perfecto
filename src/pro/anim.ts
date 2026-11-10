@@ -271,7 +271,26 @@ export type CamState = { pos: [number, number, number]; look: [number, number, n
 // three.js coordinates: X = x - 5, Z = y - 10, Y up.
 const W3 = (x: number, y: number): [number, number] => [x - 5, y - 10];
 
+export const isBoard = (s: ProScene) => (s.style ?? "board") === "board";
+
+// Tactics board cameras: always looking (almost) straight down; other modes zoom in on the action.
+const boardCam = (s: ProScene, key: CamKey, T: number): CamState => {
+  let fx = 0, fz = 0, zoom = 0;
+  if (key.mode === "follow") {
+    const b = ballAt(s, T) ?? ballAt(s, T - 0.3);
+    if (b) { [fx, fz] = W3(b[0], b[2]); zoom = 1.3; }
+  } else if ((key.mode === "side" || key.mode === "behind") && key.target) {
+    const [px, py] = position(s, key.target, T);
+    [fx, fz] = W3(px, py); zoom = key.mode === "side" ? 1.5 : 1.3;
+  }
+  if (!zoom) return { pos: [0, 33, 7.5], look: [0, 0, -0.4], fov: 40 };
+  const h = 29 / zoom;
+  const cx = Math.max(-1.5, Math.min(1.5, fx * 0.5)), cz = Math.max(-5, Math.min(5, fz * 0.8));
+  return { pos: [cx, h, cz + h * 0.24], look: [cx, 0, cz], fov: 40 };
+};
+
 const camFor = (s: ProScene, key: CamKey, T: number): CamState => {
+  if (isBoard(s)) return boardCam(s, key, T);
   if (key.mode === "follow") {
     // Behind the near team, at player height, tracking the ball (smoothed).
     const pts = [0, 0.12, 0.24].map((d) => ballAt(s, T - d)).filter(Boolean) as [number, number, number][];

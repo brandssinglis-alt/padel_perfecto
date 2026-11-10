@@ -65,6 +65,7 @@ export type ProScene = {
   hashtags?: string[];
   voiced?: boolean;
   labels?: boolean;         // name tags over players (default true)
+  style?: "board" | "3d";   // board (default): overhead tactics board with player markers; 3d: figures and close cameras
   start: { A1: Point; A2: Point; B1: Point; B2: Point; ball?: Point };
   beats: ProBeat[];
   // Filled in by render.mjs for voiced scenes:
