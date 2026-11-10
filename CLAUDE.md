@@ -7,6 +7,7 @@ Generates short vertical padel coaching videos (TikTok / Instagram Reels) from s
 - `content/backlog.md`: concept ideas not yet made. `content/published.md`: what's been posted.
 - `src/Court.tsx`: the animated court template. `render.mjs`: renders scenes to `out/<id>.mp4`.
 - `validate.mjs`: run before every render.
+- `voice.mjs` and `content/voice/`: AI voiceover clips (ElevenLabs), cached by voice + text. `content/voice/config.json` sets the voice.
 
 ## Court coordinates
 Metres. x 0 (left wall) to 10 (right wall); y 0 (far back glass) to 20 (near back glass); net at y = 10.
@@ -25,6 +26,15 @@ team B (R1, R2, red) the far half. Net position is about 2.5–3.5 m from the ne
    `https://brandssinglis-alt.github.io/padel_perfecto/videos/<id>.mp4` (all lowercase), which is the public URL that Instagram and TikTok fetch when posting.
    Commit the scenes and videos, move the concepts from the backlog to published (status: rendered, awaiting review), and push.
 7. Report the videos for human review, with each video's public URL, caption and hashtags. Never publish publicly without the owner's approval.
+
+## Voiceover (only after the owner approves a video's text)
+Weekly batches render silent, so text changes never cost a voiceover. Once the owner approves a video:
+1. Set `"voiced": true` in its scene file.
+2. `node voice.mjs <ids>` lists the missing clips as JSON lines `{file, text, voiceId}`. Make each with the Composio ElevenLabs
+   `ELEVENLABS_TEXT_TO_SPEECH` tool (that voice_id, the text exactly as listed), download the returned mp3 to `content/voice/<file>`,
+   and run `node voice.mjs <ids>` again until it reports all clips present. If `ELEVENLABS_API_KEY` is set, `voice.mjs` makes them itself.
+3. Render as usual. `render.mjs` plays each clip at the start of its part and lengthens a beat when the speech runs over.
+4. Check the audio track, then copy to `docs/videos/` as before, and commit the scene, the clips and the video.
 
 ## Posting (only after the owner approves)
 - Instagram (@padel_perfecto) goes through the Composio Instagram connector: create a REELS container with the public video URL and caption, then publish.

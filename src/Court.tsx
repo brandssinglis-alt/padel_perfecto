@@ -1,5 +1,5 @@
 import React from "react";
-import { AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig, Easing } from "remotion";
+import { AbsoluteFill, Audio, Sequence, staticFile, interpolate, spring, useCurrentFrame, useVideoConfig, Easing } from "remotion";
 import type { Beat, Point, Scene } from "./types";
 
 const C = {
@@ -19,8 +19,11 @@ export const INTRO_S = 2.2;
 export const OUTRO_S = 2.5;
 const MOVE_S = 0.9; // time players take to move into a beat's positions
 
+const introOf = (s: Scene) => s.introSeconds ?? INTRO_S;
+const outroOf = (s: Scene) => s.outroSeconds ?? OUTRO_S;
+
 export const sceneDurationFrames = (s: Scene, fps: number) =>
-  Math.round((INTRO_S + s.beats.reduce((a, b) => a + b.seconds, 0) + OUTRO_S) * fps);
+  Math.round((introOf(s) + s.beats.reduce((a, b) => a + b.seconds, 0) + outroOf(s)) * fps);
 
 // Court drawing area in pixels (1080x1920 canvas)
 const CW = 640, CH = 1280, CX = (1080 - CW) / 2, CY = 380;
@@ -81,15 +84,15 @@ export const PadelScene: React.FC<{ scene: Scene }> = ({ scene }) => {
   const t = frame / fps;
 
   // Find the current beat
-  let start = INTRO_S, idx = -1;
+  let start = introOf(scene), idx = -1;
   for (let i = 0; i < scene.beats.length; i++) {
     if (t >= start) idx = i;
     if (t < start + scene.beats[i].seconds) break;
     start += scene.beats[i].seconds;
   }
   const beatStarts: number[] = [];
-  scene.beats.reduce((acc, b) => { beatStarts.push(acc); return acc + b.seconds; }, INTRO_S);
-  const outroStart = durationInFrames / fps - OUTRO_S;
+  scene.beats.reduce((acc, b) => { beatStarts.push(acc); return acc + b.seconds; }, introOf(scene));
+  const outroStart = durationInFrames / fps - outroOf(scene);
   const inOutro = t >= outroStart;
   if (inOutro) idx = scene.beats.length - 1;
 
@@ -119,8 +122,16 @@ export const PadelScene: React.FC<{ scene: Scene }> = ({ scene }) => {
 
   const zone = cur.zone && idx >= 0 ? cur.zone : undefined;
 
+  const voice = (file: string | undefined, at: number, key: string) => file ? (
+    <Sequence key={key} from={Math.round(at * fps)}><Audio src={staticFile(file)} /></Sequence>
+  ) : null;
+
   return (
     <AbsoluteFill style={{ background: C.bg, fontFamily: "Inter, Helvetica, Arial, sans-serif" }}>
+      {scene.audio && voice(scene.audio.intro, 0.3, "vi")}
+      {scene.audio && scene.audio.beats.map((f, i) => voice(f, beatStarts[i] + 0.15, `vb${i}`))}
+      {scene.audio && voice(scene.audio.outro, outroStart + 0.2, "vo")}
+
       {/* Header */}
       <div style={{ position: "absolute", top: 90, left: 60, right: 60, textAlign: "center", transform: `scale(${0.9 + 0.1 * hookIn})`, opacity: hookIn }}>
         <div style={{ display: "inline-block", background: C.accent, color: "#0b1220", fontWeight: 800, fontSize: 30,
