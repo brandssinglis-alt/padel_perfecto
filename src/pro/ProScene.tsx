@@ -96,9 +96,11 @@ const Badge: React.FC<{ value: string; label: string; tone: Tone; pos: [number, 
   );
 };
 
-const Ball3D: React.FC<{ scene: ProScene; T: number }> = ({ scene, T }) => {
+const Ball3D: React.FC<{ scene: ProScene; T: number; camPos: [number, number, number] }> = ({ scene, T, camPos }) => {
   const b = ballAt(scene, T);
   if (!b) return null;
+  const [bx0, bz0] = W3([b[0], b[2]]);
+  const g = Math.max(1, Math.hypot(camPos[0] - bx0, camPos[1] - b[1], camPos[2] - bz0) / 9);
   const trail = [1, 2, 3, 4, 5].map((i) => ballAt(scene, T - i * 0.025)).filter(Boolean) as [number, number, number][];
   const [x, z] = W3([b[0], b[2]]);
   return (
@@ -107,13 +109,13 @@ const Ball3D: React.FC<{ scene: ProScene; T: number }> = ({ scene, T }) => {
         const [tx, tz] = W3([p[0], p[2]]);
         return (
           <mesh key={i} position={[tx, Math.max(0.065, p[1]), tz]}>
-            <sphereGeometry args={[0.065 * (1 - i * 0.12), 12, 12]} />
+            <sphereGeometry args={[0.065 * g * (1 - i * 0.12), 12, 12]} />
             <meshBasicMaterial color={C.ball} transparent opacity={0.35 - i * 0.06} toneMapped={false} />
           </mesh>
         );
       })}
       <mesh position={[x, Math.max(0.065, b[1]), z]} castShadow>
-        <sphereGeometry args={[0.07, 20, 20]} />
+        <sphereGeometry args={[0.07 * g, 20, 20]} />
         <meshStandardMaterial color={C.ball} emissive={C.ball} emissiveIntensity={0.5} roughness={0.5} toneMapped={false} />
       </mesh>
       <mesh position={[x, 0.012, z]} rotation={[-Math.PI / 2, 0, 0]}>
@@ -184,7 +186,7 @@ export const ProSceneComp: React.FC<{ scene: ProScene }> = ({ scene }) => {
             </group>
           );
         })}
-        <Ball3D scene={scene} T={T} />
+        <Ball3D scene={scene} T={T} camPos={cam.pos} />
         {b && (b.badges ?? []).map((bd, i) => {
           const at = bd.at ?? 0;
           const k = spring({ frame: frame - Math.round((ck.beatStartsReal[beat] + at) * fps), fps, config: { damping: 12 } });
@@ -230,7 +232,7 @@ export const ProSceneComp: React.FC<{ scene: ProScene }> = ({ scene }) => {
 
       {/* cards */}
       {b?.cards && (
-        <div style={{ position: "absolute", top: 380, left: 48, right: 48, display: "flex", gap: 24, justifyContent: "center" }}>
+        <div style={{ position: "absolute", bottom: 300, left: 48, right: 48, display: "flex", gap: 24, justifyContent: "center" }}>
           {b.cards.map((c, i) => {
             const o = fade(local, c.at);
             return (
