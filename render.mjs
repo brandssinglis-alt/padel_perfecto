@@ -1,4 +1,4 @@
-// Renders every scene in content/scenes (or the ids passed as args) to out/<id>.mp4
+// Renders every scene (add --3d for the 3D court) in content/scenes (or the ids passed as args) to out/<id>.mp4
 // Scenes marked "voiced": true get their voiceover clips from content/voice (see voice.mjs),
 // and each part is stretched so the speech fits.
 import { bundle } from "@remotion/bundler";
@@ -11,7 +11,9 @@ import { VOICE_DIR, sceneLines } from "./voice.mjs";
 const INTRO_S = 2.2, OUTRO_S = 2.5; // keep in step with src/Court.tsx
 const browserExecutable = process.env.REMOTION_CHROME || undefined;
 const dir = "content/scenes";
-const wanted = process.argv.slice(2);
+const args = process.argv.slice(2);
+const style3d = args.includes("--3d"); // --3d renders with the 3D court (src/Court3D.tsx)
+const wanted = args.filter(a => !a.startsWith("--"));
 const files = fs.readdirSync(dir).filter(f => f.endsWith(".json"))
   .filter(f => !wanted.length || wanted.some(w => f.startsWith(w)));
 
@@ -37,7 +39,7 @@ for (const f of files) {
   let scene = JSON.parse(fs.readFileSync(path.join(dir, f), "utf8"));
   if (scene.voiced) scene = addVoice(scene);
   const inputProps = { scene };
-  const composition = await selectComposition({ serveUrl, id: "PadelScene", inputProps, browserExecutable });
+  const composition = await selectComposition({ serveUrl, id: style3d ? "PadelScene3D" : "PadelScene", inputProps, browserExecutable });
   const outputLocation = `out/${scene.id}.mp4`;
   await renderMedia({ composition, serveUrl, codec: "h264", outputLocation, inputProps, browserExecutable,
     chromiumOptions: { gl: "swangle" } });

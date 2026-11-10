@@ -5,7 +5,8 @@ Generates short vertical padel coaching videos (TikTok / Instagram Reels) from s
 ## Layout
 - `content/scenes/<id>.json`: one video each. Schema in `src/types.ts`.
 - `content/backlog.md`: concept ideas not yet made. `content/published.md`: what's been posted.
-- `src/Court.tsx`: the animated court template. `render.mjs`: renders scenes to `out/<id>.mp4`.
+- `src/Court.tsx`: the 2D court template. `src/Court3D.tsx`: the 3D court template (`render.mjs --3d`, about 2.5 min per video).
+  `src/timeline.tsx`: timing, header, coaching text and voiceover shared by both. `render.mjs`: renders scenes to `out/<id>.mp4`.
 - `validate.mjs`: run before every render.
 - `voice.mjs` and `content/voice/`: AI voiceover clips (ElevenLabs), cached by voice + text. `content/voice/config.json` sets the voice.
 
