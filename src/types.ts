@@ -20,4 +20,9 @@ export type Scene = {
   cta: string;             // closing call to action
   caption?: string;        // post caption (not rendered)
   hashtags?: string[];
+  voiced?: boolean;        // true once the text is approved: render.mjs adds the voiceover
+  // Filled in by render.mjs for voiced scenes (not written in scene files):
+  introSeconds?: number;
+  outroSeconds?: number;
+  audio?: { intro?: string; beats: (string | undefined)[]; outro?: string }; // file names in content/voice
 };
