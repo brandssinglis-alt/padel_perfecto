@@ -4,7 +4,8 @@ import type { Point } from "../types";
 import type { CamKey, Pid, ProBeat, ProScene, Shot, ShotType } from "./types";
 
 export const PIDS: Pid[] = ["A1", "A2", "B1", "B2"];
-export const INTRO = 0.4;   // players pop in before beat 1
+export const COVER = 0.6;   // branded cover frame at the very start (if the scene has a cover)
+export const INTRO = 0.9;   // cover, then players pop in before beat 1
 export const OUTRO = 1.6;   // end card
 export const FPS = 30;
 

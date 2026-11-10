@@ -74,7 +74,7 @@ export const Overlays: React.FC<{ scene: Scene }> = ({ scene }) => {
   const textT = inOutro ? t - outroStart : idx < 0 ? t : local;
   const textOpacity = interpolate(textT, [0, 0.3], [0, 1], { extrapolateRight: "clamp" });
   const voice = (file: string | undefined, at: number, key: string) => file ? (
-    <Sequence key={key} from={Math.round(at * fps)}><Audio src={staticFile(file)} /></Sequence>
+    <Sequence key={key} from={Math.round(at * fps)}><Audio src={staticFile(`voice/${file}`)} /></Sequence>
   ) : null;
 
   return (

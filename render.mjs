@@ -43,7 +43,7 @@ const addVoice = (scene) => {
   return scene;
 };
 
-const serveUrl = await bundle({ entryPoint: path.resolve("src/index.ts"), publicDir: path.resolve(VOICE_DIR) });
+const serveUrl = await bundle({ entryPoint: path.resolve("src/index.ts"), publicDir: path.resolve("content") });
 fs.mkdirSync("out", { recursive: true });
 for (const f of files) {
   let scene = JSON.parse(fs.readFileSync(path.join(dir, f), "utf8"));

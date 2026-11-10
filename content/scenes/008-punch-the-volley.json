@@ -6,30 +6,105 @@
   "level": "Beginner",
   "hook": "Why your volleys keep flying out",
   "cta": "Follow for Shot School #2",
+  "cover": {
+    "lines": [
+      "Why your",
+      "volleys",
+      "fly out"
+    ],
+    "hi": 1
+  },
   "caption": "The volley is a punch, not a swing. Short backswing, racket in front, punch and stop. Do you swing at your volleys?",
-  "hashtags": ["#PadelPerfectoShotSchool", "#padel", "#padeltips", "#volley", "#padelbeginner"],
-  "start": { "A1": [6.6, 12.9], "A2": [3.2, 12.9], "B1": [3.0, 2.4], "B2": [7.0, 2.4] },
+  "hashtags": [
+    "#PadelPerfectoShotSchool",
+    "#padel",
+    "#padeltips",
+    "#volley",
+    "#padelbeginner"
+  ],
+  "start": {
+    "A1": [
+      6.6,
+      12.9
+    ],
+    "A2": [
+      3.2,
+      12.9
+    ],
+    "B1": [
+      3.0,
+      2.4
+    ],
+    "B2": [
+      7.0,
+      2.4
+    ]
+  },
   "beats": [
     {
       "text": "",
       "say": "Volleys flying out? You're swinging at them.",
       "seconds": 4,
-      "camera": [{ "at": 0, "mode": "side", "target": "A1", "blend": 0 }],
-      "shots": [
-        { "by": "B2", "type": "forehand", "at": 0.3 },
-        { "by": "A1", "type": "bigswing", "at": 1.25, "to": [6.2, 0.2], "toH": 1.6, "dur": 0.55 }
+      "camera": [
+        {
+          "at": 0,
+          "mode": "side",
+          "target": "A1",
+          "blend": 0
+        }
       ],
-      "stamp": { "text": "OUT", "tone": "red", "at": 2.0 }
+      "shots": [
+        {
+          "by": "B2",
+          "type": "forehand",
+          "at": 0.3
+        },
+        {
+          "by": "A1",
+          "type": "bigswing",
+          "at": 1.25,
+          "to": [
+            6.2,
+            0.2
+          ],
+          "toH": 1.6,
+          "dur": 0.55
+        }
+      ],
+      "stamp": {
+        "text": "OUT",
+        "tone": "red",
+        "at": 2.0
+      }
     },
     {
       "text": "Racket in front, short backswing",
       "say": "Keep the racket up and in front of you. The backswing is tiny.",
       "seconds": 4,
       "slow": 0.45,
-      "camera": [{ "at": 0, "mode": "side", "target": "A1", "blend": 0 }],
+      "camera": [
+        {
+          "at": 0,
+          "mode": "side",
+          "target": "A1",
+          "blend": 0
+        }
+      ],
       "shots": [
-        { "by": "B2", "type": "forehand", "at": 0.2 },
-        { "by": "A1", "type": "volley", "at": 2.6, "to": [5.0, 3.0] }
+        {
+          "by": "B2",
+          "type": "forehand",
+          "at": 0.2
+        },
+        {
+          "by": "A1",
+          "type": "volley",
+          "at": 2.6,
+          "to": [
+            5.0,
+            3.0
+          ]
+        }
       ]
     },
     {
@@ -37,25 +112,86 @@
       "say": "Punch forward through the ball and stop. No big follow-through.",
       "seconds": 4,
       "slow": 0.45,
-      "camera": [{ "at": 0, "mode": "side", "target": "A1", "blend": 0 }],
+      "camera": [
+        {
+          "at": 0,
+          "mode": "side",
+          "target": "A1",
+          "blend": 0
+        }
+      ],
       "shots": [
-        { "by": "B1", "type": "forehand", "at": 0.2 },
-        { "by": "A1", "type": "volley", "at": 2.4, "to": [4.6, 2.6] }
+        {
+          "by": "B1",
+          "type": "forehand",
+          "at": 0.2
+        },
+        {
+          "by": "A1",
+          "type": "volley",
+          "at": 2.4,
+          "to": [
+            4.6,
+            2.6
+          ]
+        }
       ]
     },
     {
       "text": "Aim deep or at their feet",
       "say": "Send it deep or down at their feet, and the volley does the work.",
       "seconds": 5,
-      "camera": [{ "at": 0, "mode": "tactics", "blend": 0 }],
+      "camera": [
+        {
+          "at": 0,
+          "mode": "tactics",
+          "blend": 0
+        }
+      ],
       "zones": [
-        { "x": 0.5, "y": 0.4, "w": 9.0, "h": 1.6, "label": "DEEP", "tone": "green", "at": 0.3 },
-        { "x": 1.8, "y": 2.4, "w": 2.4, "h": 1.2, "label": "FEET", "tone": "green", "at": 0.6 },
-        { "x": 5.8, "y": 2.4, "w": 2.4, "h": 1.2, "label": "FEET", "tone": "green", "at": 0.6 }
+        {
+          "x": 0.5,
+          "y": 0.4,
+          "w": 9.0,
+          "h": 1.6,
+          "label": "DEEP",
+          "tone": "green",
+          "at": 0.3
+        },
+        {
+          "x": 1.8,
+          "y": 2.4,
+          "w": 2.4,
+          "h": 1.2,
+          "label": "FEET",
+          "tone": "green",
+          "at": 0.6
+        },
+        {
+          "x": 5.8,
+          "y": 2.4,
+          "w": 2.4,
+          "h": 1.2,
+          "label": "FEET",
+          "tone": "green",
+          "at": 0.6
+        }
       ],
       "shots": [
-        { "by": "B2", "type": "forehand", "at": 0.9 },
-        { "by": "A1", "type": "volley", "at": 1.8, "to": [5.4, 1.2] }
+        {
+          "by": "B2",
+          "type": "forehand",
+          "at": 0.9
+        },
+        {
+          "by": "A1",
+          "type": "volley",
+          "at": 1.8,
+          "to": [
+            5.4,
+            1.2
+          ]
+        }
       ]
     },
     {

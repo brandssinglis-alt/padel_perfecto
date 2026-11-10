@@ -60,6 +60,7 @@ export type ProScene = {
   level: string;
   hook: string;
   cta: string;              // end card line
+  cover?: { lines: string[]; hi?: number }; // cover title (content/covers/<id>.png, made by covers.mjs); hi = highlighted line
   caption?: string;
   hashtags?: string[];
   voiced?: boolean;

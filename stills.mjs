@@ -8,7 +8,7 @@ const [id, ...times] = process.argv.slice(2);
 const f = fs.readdirSync("content/scenes").find((x) => x.startsWith(id));
 const scene = JSON.parse(fs.readFileSync(`content/scenes/${f}`, "utf8"));
 const browserExecutable = process.env.REMOTION_CHROME || undefined;
-const serveUrl = await bundle({ entryPoint: path.resolve("src/index.ts"), publicDir: path.resolve("content/voice") });
+const serveUrl = await bundle({ entryPoint: path.resolve("src/index.ts"), publicDir: path.resolve("content") });
 const inputProps = { scene };
 const compId = scene.format === "pro" ? "PadelPro" : "PadelScene";
 const composition = await selectComposition({ serveUrl, id: compId, inputProps, browserExecutable });

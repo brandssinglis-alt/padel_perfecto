@@ -6,31 +6,133 @@
   "level": "All levels",
   "hook": "Won the match but your level didn't move?",
   "cta": "Follow for Level Up #2",
+  "cover": {
+    "lines": [
+      "Won but",
+      "your level",
+      "didn't move?"
+    ],
+    "hi": 2
+  },
   "caption": "Your Playtomic level only moves on competitive matches, and who you beat matters as much as winning. Did your last match move your level the way you expected?",
-  "hashtags": ["#PadelPerfectoLevelUp", "#padel", "#playtomic", "#padeltips", "#padellevel"],
-  "start": { "A1": [6.8, 12.8], "A2": [3.2, 13.0], "B1": [3.0, 2.0], "B2": [7.0, 2.2] },
+  "hashtags": [
+    "#PadelPerfectoLevelUp",
+    "#padel",
+    "#playtomic",
+    "#padeltips",
+    "#padellevel"
+  ],
+  "start": {
+    "A1": [
+      6.8,
+      12.8
+    ],
+    "A2": [
+      3.2,
+      13.0
+    ],
+    "B1": [
+      3.0,
+      2.0
+    ],
+    "B2": [
+      7.0,
+      2.2
+    ]
+  },
   "beats": [
     {
       "text": "",
       "say": "Won, and your Playtomic level barely moved? Here's why.",
       "seconds": 3.8,
-      "players": { "A1": [6.6, 13.8], "A2": [3.4, 13.4], "B1": [3.2, 3.0], "B2": [6.8, 3.0] },
+      "players": {
+        "A1": [
+          6.6,
+          13.8
+        ],
+        "A2": [
+          3.4,
+          13.4
+        ],
+        "B1": [
+          3.2,
+          3.0
+        ],
+        "B2": [
+          6.8,
+          3.0
+        ]
+      },
       "moveAt": 0.3,
       "shots": [
-        { "by": "B2", "type": "lob", "at": 0.25 },
-        { "by": "A1", "type": "smash", "at": 1.45, "to": [7.8, 6.2], "dur": 0.32 }
+        {
+          "by": "B2",
+          "type": "lob",
+          "at": 0.25
+        },
+        {
+          "by": "A1",
+          "type": "smash",
+          "at": 1.45,
+          "to": [
+            7.8,
+            6.2
+          ],
+          "dur": 0.32
+        }
       ],
-      "gestures": [{ "who": "A1", "type": "armsUp", "at": 2.0, "dur": 1.2 }],
-      "badges": [{ "who": "A1", "from": 2.90, "to": 2.91, "at": 2.0 }]
+      "gestures": [
+        {
+          "who": "A1",
+          "type": "armsUp",
+          "at": 2.0,
+          "dur": 1.2
+        }
+      ],
+      "badges": [
+        {
+          "who": "A1",
+          "from": 2.9,
+          "to": 2.91,
+          "at": 2.0
+        }
+      ]
     },
     {
       "text": "Only competitive matches count",
       "say": "First, friendlies don't count. Only competitive matches change your level.",
       "seconds": 5,
-      "players": { "A1": [6.8, 13.2], "A2": [3.2, 13.2], "B1": [3.2, 6.8], "B2": [6.8, 6.8] },
+      "players": {
+        "A1": [
+          6.8,
+          13.2
+        ],
+        "A2": [
+          3.2,
+          13.2
+        ],
+        "B1": [
+          3.2,
+          6.8
+        ],
+        "B2": [
+          6.8,
+          6.8
+        ]
+      },
       "cards": [
-        { "title": "FRIENDLY", "sub": "Level frozen", "tone": "grey", "at": 0.6 },
-        { "title": "COMPETITIVE", "sub": "Level moves", "tone": "green", "at": 1.8 }
+        {
+          "title": "FRIENDLY",
+          "sub": "Level frozen",
+          "tone": "grey",
+          "at": 0.6
+        },
+        {
+          "title": "COMPETITIVE",
+          "sub": "Level moves",
+          "tone": "green",
+          "at": 1.8
+        }
       ]
     },
     {
@@ -38,12 +140,34 @@
       "say": "Beat a team rated above you and you gain more. Lose to a team below you and you drop more.",
       "seconds": 5,
       "badges": [
-        { "who": "A", "from": 2.90, "label": "YOUR TEAM", "tone": "grey", "at": 0.2 },
-        { "who": "B", "from": 3.40, "label": "THEIR TEAM", "tone": "red", "at": 0.5 }
+        {
+          "who": "A",
+          "from": 2.9,
+          "label": "YOUR TEAM",
+          "tone": "grey",
+          "at": 0.2
+        },
+        {
+          "who": "B",
+          "from": 3.4,
+          "label": "THEIR TEAM",
+          "tone": "red",
+          "at": 0.5
+        }
       ],
       "cards": [
-        { "title": "BEAT HIGHER", "sub": "▲ bigger gain", "tone": "green", "at": 1.4 },
-        { "title": "LOSE TO LOWER", "sub": "▼ bigger drop", "tone": "red", "at": 3.0 }
+        {
+          "title": "BEAT HIGHER",
+          "sub": "▲ bigger gain",
+          "tone": "green",
+          "at": 1.4
+        },
+        {
+          "title": "LOSE TO LOWER",
+          "sub": "▼ bigger drop",
+          "tone": "red",
+          "at": 3.0
+        }
       ]
     },
     {
@@ -51,12 +175,37 @@
       "say": "Your reliability score decides how big each jump is. New players swing a lot, regulars move slowly.",
       "seconds": 5,
       "shots": [
-        { "by": "B1", "type": "forehand", "at": 0.3 },
-        { "by": "A2", "type": "volley", "at": 1.05, "to": [5.2, 3.5], "dur": 0.55 }
+        {
+          "by": "B1",
+          "type": "forehand",
+          "at": 0.3
+        },
+        {
+          "by": "A2",
+          "type": "volley",
+          "at": 1.05,
+          "to": [
+            5.2,
+            3.5
+          ],
+          "dur": 0.55
+        }
       ],
       "badges": [
-        { "who": "A2", "from": 2.90, "to": 3.15, "label": "NEW PLAYER", "at": 1.6 },
-        { "who": "A1", "from": 2.90, "to": 2.92, "label": "REGULAR", "at": 2.2 }
+        {
+          "who": "A2",
+          "from": 2.9,
+          "to": 3.15,
+          "label": "NEW PLAYER",
+          "at": 1.6
+        },
+        {
+          "who": "A1",
+          "from": 2.9,
+          "to": 2.92,
+          "label": "REGULAR",
+          "at": 2.2
+        }
       ]
     },
     {
@@ -64,7 +213,14 @@
       "say": "What's your level, and is it fair? Tell me below.",
       "seconds": 3,
       "freezeAt": 0.8,
-      "gestures": [{ "who": "A1", "type": "point", "at": 0.1, "dur": 3 }]
+      "gestures": [
+        {
+          "who": "A1",
+          "type": "point",
+          "at": 0.1,
+          "dur": 3
+        }
+      ]
     }
   ]
 }

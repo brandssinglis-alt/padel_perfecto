@@ -6,65 +6,227 @@
   "level": "Beginner",
   "hook": "Myth or fact: you can volley the serve",
   "cta": "Follow for Myth or Fact #2",
+  "cover": {
+    "lines": [
+      "Can you",
+      "volley the",
+      "serve?"
+    ],
+    "hi": 2
+  },
   "caption": "You can't volley the serve. It has to bounce in the box first. Which padel rule do people get wrong at your club?",
-  "hashtags": ["#PadelPerfectoMythOrFact", "#padel", "#padelrules", "#padeltips", "#padelbeginner"],
-  "start": { "A1": [2.6, 18.2], "A2": [7.0, 13.0], "B1": [7.4, 1.6], "B2": [3.0, 7.2] },
+  "hashtags": [
+    "#PadelPerfectoMythOrFact",
+    "#padel",
+    "#padelrules",
+    "#padeltips",
+    "#padelbeginner"
+  ],
+  "start": {
+    "A1": [
+      2.6,
+      18.2
+    ],
+    "A2": [
+      7.0,
+      13.0
+    ],
+    "B1": [
+      7.4,
+      1.6
+    ],
+    "B2": [
+      3.0,
+      7.2
+    ]
+  },
   "beats": [
     {
       "text": "MYTH OR FACT? You can volley the serve",
       "say": "Myth or fact: you can volley the return of serve?",
       "seconds": 4,
-      "players": { "A1": [2.7, 15.6] },
+      "players": {
+        "A1": [
+          2.7,
+          15.6
+        ]
+      },
       "moveAt": 0.3,
       "moveDur": 1.0,
       "freezeAt": 1.35,
-      "camera": [{ "at": 0.85, "mode": "behind", "target": "A1", "blend": 0.45 }],
+      "camera": [
+        {
+          "at": 0.85,
+          "mode": "behind",
+          "target": "A1",
+          "blend": 0.45
+        }
+      ],
       "shots": [
-        { "by": "B1", "type": "serve", "at": 0.35, "to": [2.9, 14.9], "toH": 1.15, "dur": 1.15 },
-        { "by": "A1", "type": "volley", "at": 1.5 }
+        {
+          "by": "B1",
+          "type": "serve",
+          "at": 0.35,
+          "to": [
+            2.9,
+            14.9
+          ],
+          "toH": 1.15,
+          "dur": 1.15
+        },
+        {
+          "by": "A1",
+          "type": "volley",
+          "at": 1.5
+        }
       ]
     },
     {
       "text": "Lock in your answer",
       "seconds": 3,
       "freezeAt": 0,
-      "countdown": { "from": 3, "at": 0.3 }
+      "countdown": {
+        "from": 3,
+        "at": 0.3
+      }
     },
     {
       "text": "Myth: the serve must bounce first",
       "say": "Myth. The serve must bounce in the service box first. Volley it and you lose the point.",
       "seconds": 5,
       "replay": true,
-      "camera": [{ "at": 0, "mode": "tactics", "blend": 0 }],
-      "stamp": { "text": "MYTH", "tone": "red", "at": 0.1 },
-      "players": { "A1": [2.6, 18.2] },
+      "camera": [
+        {
+          "at": 0,
+          "mode": "tactics",
+          "blend": 0
+        }
+      ],
+      "stamp": {
+        "text": "MYTH",
+        "tone": "red",
+        "at": 0.1
+      },
+      "players": {
+        "A1": [
+          2.6,
+          18.2
+        ]
+      },
       "moveDur": 0.2,
-      "zones": [{ "x": 0.05, "y": 10.05, "w": 4.9, "h": 6.85, "label": "SERVICE BOX", "tone": "green", "at": 1.0 }],
+      "zones": [
+        {
+          "x": 0.05,
+          "y": 10.05,
+          "w": 4.9,
+          "h": 6.85,
+          "label": "SERVICE BOX",
+          "tone": "green",
+          "at": 1.0
+        }
+      ],
       "shots": [
-        { "by": "B1", "type": "serve", "at": 1.3, "bounce": [2.8, 15.2] },
-        { "by": "A1", "type": "forehand", "at": 2.6, "to": [5.2, 3.2] }
+        {
+          "by": "B1",
+          "type": "serve",
+          "at": 1.3,
+          "bounce": [
+            2.8,
+            15.2
+          ]
+        },
+        {
+          "by": "A1",
+          "type": "forehand",
+          "at": 2.6,
+          "to": [
+            5.2,
+            3.2
+          ]
+        }
       ]
     },
     {
       "text": "Let it bounce, then lob or go low",
       "say": "Let it bounce, then lob them or keep it low at their feet.",
       "seconds": 5,
-      "players": { "A1": [2.6, 18.2], "B1": [7.0, 7.3] },
+      "players": {
+        "A1": [
+          2.6,
+          18.2
+        ],
+        "B1": [
+          7.0,
+          7.3
+        ]
+      },
       "moveDur": 0.2,
-      "keys": [{ "at": 0.9, "dur": 1.0, "to": { "B1": [7.0, 7.3] } }],
-      "camera": [{ "at": 1.4, "mode": "follow", "blend": 0.5 }],
-      "shots": [
-        { "by": "B2", "type": "forehand", "at": 0.3, "bounce": [2.9, 15.6] },
-        { "by": "A1", "type": "lob", "at": 1.5, "to": [5.4, 1.4] }
+      "keys": [
+        {
+          "at": 0.9,
+          "dur": 1.0,
+          "to": {
+            "B1": [
+              7.0,
+              7.3
+            ]
+          }
+        }
       ],
-      "arrows": [{ "from": [2.9, 17.6], "to": [5.4, 1.6], "tone": "ball", "at": 1.6 }]
+      "camera": [
+        {
+          "at": 1.4,
+          "mode": "follow",
+          "blend": 0.5
+        }
+      ],
+      "shots": [
+        {
+          "by": "B2",
+          "type": "forehand",
+          "at": 0.3,
+          "bounce": [
+            2.9,
+            15.6
+          ]
+        },
+        {
+          "by": "A1",
+          "type": "lob",
+          "at": 1.5,
+          "to": [
+            5.4,
+            1.4
+          ]
+        }
+      ],
+      "arrows": [
+        {
+          "from": [
+            2.9,
+            17.6
+          ],
+          "to": [
+            5.4,
+            1.6
+          ],
+          "tone": "ball",
+          "at": 1.6
+        }
+      ]
     },
     {
       "text": "Which rule confuses you most?",
       "say": "Which padel rule confuses you most? Drop it below.",
       "seconds": 3,
       "freezeAt": 0.5,
-      "camera": [{ "at": 0, "mode": "tactics", "blend": 0.6 }]
+      "camera": [
+        {
+          "at": 0,
+          "mode": "tactics",
+          "blend": 0.6
+        }
+      ]
     }
   ]
 }

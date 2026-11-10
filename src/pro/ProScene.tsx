@@ -1,14 +1,14 @@
 // Pro scene composition: 3D court, pro-style athletes that swing on contact, per-beat camera,
 // badges, speech bubbles, stamps, countdowns, cards, captions and voiceover.
 import React from "react";
-import { AbsoluteFill, Audio, Sequence, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
+import { AbsoluteFill, Audio, Img, Sequence, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { ThreeCanvas } from "@remotion/three";
 import { useThree } from "@react-three/fiber";
 import type { Point } from "../types";
 import { C } from "../timeline";
 import { Arrow, CourtModel, Zone, useTextTexture } from "../Court3D";
 import { Athlete, type Look } from "./Athlete";
-import { INTRO, OUTRO, PIDS, ballAt, cameraAt, clock, poseAt, position, runPhase, velocity, durationSeconds } from "./anim";
+import { COVER, INTRO, OUTRO, PIDS, ballAt, cameraAt, clock, poseAt, position, runPhase, velocity, durationSeconds } from "./anim";
 import type { Pid, ProScene, Tone } from "./types";
 
 export const proDurationFrames = (s: ProScene, fps: number) => Math.round(durationSeconds(s) * fps);
@@ -17,7 +17,8 @@ const W3 = (p: Point): [number, number] => [p[0] - 5, p[1] - 10];
 const FONT = "Inter, Helvetica, Arial, sans-serif";
 
 export const CHAPTER_COLOR: Record<ProScene["chapter"], string> = {
-  "Level Up": "#facc15", "Shot School": "#a78bfa", "Court Zones": "#34d399", "Myth or Fact": "#fb923c", "Kit Room": "#f472b6",
+  // brand kit chapter colours (src/brand/brand.js)
+  "Level Up": "#c6f432", "Shot School": "#22d3ee", "Court Zones": "#5b8cff", "Myth or Fact": "#ff5fa2", "Kit Room": "#ffb020",
 };
 const TONE: Record<Tone, { fill: string; stroke: string; text: string }> = {
   green: { fill: "rgba(34,197,94,0.30)", stroke: "#4ade80", text: "#052e16" },
@@ -136,7 +137,7 @@ export const ProSceneComp: React.FC<{ scene: ProScene }> = ({ scene }) => {
   const { T, beat, local } = ck;
   const b = beat >= 0 && beat < scene.beats.length ? scene.beats[beat] : undefined;
   const inOutro = beat >= scene.beats.length;
-  const pop = spring({ frame, fps, config: { damping: 13 } });
+  const pop = spring({ frame: frame - Math.round((scene.cover ? COVER : 0) * fps), fps, config: { damping: 13 } });
   const chapterColor = CHAPTER_COLOR[scene.chapter];
   const ball = ballAt(scene, T);
   const cam = cameraAt(scene, T, t);
@@ -180,7 +181,7 @@ export const ProSceneComp: React.FC<{ scene: ProScene }> = ({ scene }) => {
                 <Athlete pos={[0, 0]} facing={face} pose={poseAt(scene, who, T)} run={runPhase(scene, who, T)}
                   speed={Math.hypot(v[0], v[1])} look={LOOKS[who]} rim={RIM[who]} />
               </group>
-              {scene.labels !== false && !inOutro && Math.hypot(cam.pos[0] - x, cam.pos[2] - z) > 7 && (
+              {scene.labels !== false && !inOutro && Math.hypot(cam.pos[0] - x, cam.pos[2] - z) > 7 && !(b?.badges ?? []).some((bd) => bd.who === who && local >= (bd.at ?? 0)) && (
                 <Tag text={NAMES[who]} color={who[0] === "A" ? C.A : C.B} pos={[x, 2.25, z]} scale={0.8} />
               )}
             </group>
@@ -209,7 +210,7 @@ export const ProSceneComp: React.FC<{ scene: ProScene }> = ({ scene }) => {
 
       {/* voiceover: one clip per beat */}
       {scene.audio && scene.audio.beats.map((f, i) => f ? (
-        <Sequence key={`v${i}`} from={Math.round((ck.beatStartsReal[i] + 0.12) * fps)}><Audio src={staticFile(f)} /></Sequence>
+        <Sequence key={`v${i}`} from={Math.round((ck.beatStartsReal[i] + 0.12) * fps)}><Audio src={staticFile(`voice/${f}`)} /></Sequence>
       ) : null)}
 
       {/* header: series pill + hook */}
@@ -276,6 +277,11 @@ export const ProSceneComp: React.FC<{ scene: ProScene }> = ({ scene }) => {
         <div key={`t${beat}`} style={{ position: "absolute", left: 56, right: 56, bottom: 90, opacity: fade(local, 0), display: "flex",
           justifyContent: "center", textAlign: "center", background: "rgba(11,18,32,0.78)", borderRadius: 28, padding: "26px 32px",
           borderBottom: `8px solid ${chapterColor}`, color: "#fff", fontSize: 48, fontWeight: 800, lineHeight: 1.18 }}>{b.text}</div>
+      )}
+
+      {/* cover: the branded title card, shown for a moment before the action */}
+      {scene.cover && t < COVER && (
+        <AbsoluteFill><Img src={staticFile(`covers/${scene.id}.png`)} style={{ width: "100%", height: "100%" }} /></AbsoluteFill>
       )}
 
       {/* end card */}

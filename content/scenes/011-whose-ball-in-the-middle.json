@@ -6,42 +6,202 @@
   "level": "Beginner",
   "hook": "Ball down the middle. Who was meant to take it?",
   "cta": "Follow for Partner Problems #2",
+  "cover": {
+    "lines": [
+      "Whose ball",
+      "is the",
+      "middle?"
+    ],
+    "hi": 2
+  },
   "caption": "The middle ball causes more arguments than anything else in padel. Forehand takes it, and call it early. Who takes the middle in your pair?",
-  "hashtags": ["#PadelPerfectoLevelUp", "#PartnerProblems", "#padel", "#padeltips", "#padeldoubles"],
-  "start": { "A1": [3.0, 13.0], "A2": [7.0, 13.0], "B1": [3.0, 7.0], "B2": [7.0, 7.0] },
+  "hashtags": [
+    "#PadelPerfectoLevelUp",
+    "#PartnerProblems",
+    "#padel",
+    "#padeltips",
+    "#padeldoubles"
+  ],
+  "start": {
+    "A1": [
+      3.0,
+      13.0
+    ],
+    "A2": [
+      7.0,
+      13.0
+    ],
+    "B1": [
+      3.0,
+      7.0
+    ],
+    "B2": [
+      7.0,
+      7.0
+    ]
+  },
   "beats": [
     {
       "text": "",
       "say": "Ball down the middle, you both leave it, and the blame starts.",
       "seconds": 4,
-      "camera": [{ "at": 0, "mode": "follow", "blend": 0 }, { "at": 1.6, "mode": "tactics", "blend": 0.8 }],
-      "keys": [{ "at": 0.5, "dur": 0.4, "to": { "A1": [3.4, 13.0], "A2": [6.6, 13.0] } }, { "at": 1.0, "dur": 0.4, "to": { "A1": [3.0, 13.0], "A2": [7.0, 13.0] } }],
-      "shots": [{ "by": "B2", "type": "forehand", "at": 0.4, "to": [5.0, 19.0], "toH": 0.5, "dur": 0.9 }],
-      "gestures": [{ "who": "A2", "type": "armsUp", "at": 1.6, "dur": 2.2 }]
+      "camera": [
+        {
+          "at": 0,
+          "mode": "follow",
+          "blend": 0
+        },
+        {
+          "at": 1.6,
+          "mode": "tactics",
+          "blend": 0.8
+        }
+      ],
+      "keys": [
+        {
+          "at": 0.5,
+          "dur": 0.4,
+          "to": {
+            "A1": [
+              3.4,
+              13.0
+            ],
+            "A2": [
+              6.6,
+              13.0
+            ]
+          }
+        },
+        {
+          "at": 1.0,
+          "dur": 0.4,
+          "to": {
+            "A1": [
+              3.0,
+              13.0
+            ],
+            "A2": [
+              7.0,
+              13.0
+            ]
+          }
+        }
+      ],
+      "shots": [
+        {
+          "by": "B2",
+          "type": "forehand",
+          "at": 0.4,
+          "to": [
+            5.0,
+            19.0
+          ],
+          "toH": 0.5,
+          "dur": 0.9
+        }
+      ],
+      "gestures": [
+        {
+          "who": "A2",
+          "type": "armsUp",
+          "at": 1.6,
+          "dur": 2.2
+        }
+      ]
     },
     {
       "text": "Forehand takes the middle",
       "say": "Simple rule: whoever has their forehand in the middle takes it. With two right-handers, that's the player on the left.",
       "seconds": 5.5,
-      "zones": [{ "x": 3.6, "y": 11.4, "w": 2.8, "h": 2.2, "label": "FOREHAND", "tone": "green", "at": 0.8 }],
-      "arrows": [{ "from": [3.2, 12.8], "to": [5.0, 12.2], "tone": "A", "at": 1.0 }],
-      "gestures": [{ "who": "A1", "type": "point", "at": 1.2, "dur": 3.5 }]
+      "zones": [
+        {
+          "x": 3.6,
+          "y": 11.4,
+          "w": 2.8,
+          "h": 2.2,
+          "label": "FOREHAND",
+          "tone": "green",
+          "at": 0.8
+        }
+      ],
+      "arrows": [
+        {
+          "from": [
+            3.2,
+            12.8
+          ],
+          "to": [
+            5.0,
+            12.2
+          ],
+          "tone": "A",
+          "at": 1.0
+        }
+      ],
+      "gestures": [
+        {
+          "who": "A1",
+          "type": "point",
+          "at": 1.2,
+          "dur": 3.5
+        }
+      ]
     },
     {
       "text": "Call it early",
       "say": "And call it early, mine or yours, before the ball crosses the net.",
       "seconds": 4,
-      "shots": [{ "by": "B2", "type": "forehand", "at": 0.5 }],
-      "bubbles": [{ "who": "A1", "text": "MINE!", "at": 0.75 }],
+      "shots": [
+        {
+          "by": "B2",
+          "type": "forehand",
+          "at": 0.5
+        }
+      ],
+      "bubbles": [
+        {
+          "who": "A1",
+          "text": "MINE!",
+          "at": 0.75
+        }
+      ],
       "freezeAt": 1.0
     },
     {
       "text": "Same ball, sorted",
       "say": "Same ball. No gap, no argument.",
       "seconds": 4,
-      "keys": [{ "at": 0, "dur": 0.4, "to": { "A1": [4.1, 12.8] } }],
-      "shots": [{ "by": "A1", "type": "volley", "at": 0.45, "to": [4.6, 3.4] }],
-      "gestures": [{ "who": "A2", "type": "thumbsUp", "at": 1.2, "dur": 2.6 }]
+      "keys": [
+        {
+          "at": 0,
+          "dur": 0.4,
+          "to": {
+            "A1": [
+              4.1,
+              12.8
+            ]
+          }
+        }
+      ],
+      "shots": [
+        {
+          "by": "A1",
+          "type": "volley",
+          "at": 0.45,
+          "to": [
+            4.6,
+            3.4
+          ]
+        }
+      ],
+      "gestures": [
+        {
+          "who": "A2",
+          "type": "thumbsUp",
+          "at": 1.2,
+          "dur": 2.6
+        }
+      ]
     },
     {
       "text": "Who takes the middle in your pair?",

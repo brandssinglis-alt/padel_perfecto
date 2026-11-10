@@ -6,37 +6,138 @@
   "level": "Beginner",
   "hook": "The worst place to stand on a padel court",
   "cta": "Follow for Court Zones #2",
+  "cover": {
+    "lines": [
+      "The worst",
+      "place to",
+      "stand"
+    ],
+    "hi": 2
+  },
   "caption": "Halfway up the court is where points go to die. Be at the net or at the back, never in between. Where do you get stuck?",
-  "hashtags": ["#PadelPerfectoCourtZones", "#padel", "#padeltips", "#padeltactics", "#padelbeginner"],
-  "start": { "A1": [6.9, 15.4], "A2": [3.1, 15.4], "B1": [3.1, 7.2], "B2": [6.9, 7.2] },
+  "hashtags": [
+    "#PadelPerfectoCourtZones",
+    "#padel",
+    "#padeltips",
+    "#padeltactics",
+    "#padelbeginner"
+  ],
+  "start": {
+    "A1": [
+      6.9,
+      15.4
+    ],
+    "A2": [
+      3.1,
+      15.4
+    ],
+    "B1": [
+      3.1,
+      7.2
+    ],
+    "B2": [
+      6.9,
+      7.2
+    ]
+  },
   "beats": [
     {
       "text": "",
       "say": "Every ball landing at your feet? Look where you're standing.",
       "seconds": 4,
-      "camera": [{ "at": 0, "mode": "behind", "target": "A1", "blend": 0 }],
-      "shots": [
-        { "by": "B2", "type": "volley", "at": 0.5, "bounce": [7.2, 14.6] },
-        { "by": "A1", "type": "forehand", "at": 1.2, "to": [6.4, 10.0], "toH": 0.45, "dur": 0.35 }
+      "camera": [
+        {
+          "at": 0,
+          "mode": "behind",
+          "target": "A1",
+          "blend": 0
+        }
       ],
-      "stamp": { "text": "NET", "tone": "red", "at": 1.9 }
+      "shots": [
+        {
+          "by": "B2",
+          "type": "volley",
+          "at": 0.5,
+          "bounce": [
+            7.2,
+            14.6
+          ]
+        },
+        {
+          "by": "A1",
+          "type": "forehand",
+          "at": 1.2,
+          "to": [
+            6.4,
+            10.0
+          ],
+          "toH": 0.45,
+          "dur": 0.35
+        }
+      ],
+      "stamp": {
+        "text": "NET",
+        "tone": "red",
+        "at": 1.9
+      }
     },
     {
       "text": "No-man's-land",
       "say": "This band, between the service line and the net position, is no-man's-land.",
       "seconds": 4,
-      "camera": [{ "at": 0, "mode": "tactics", "blend": 0.7 }],
-      "zones": [{ "x": 0.05, "y": 13.6, "w": 9.9, "h": 3.3, "label": "NO-MAN'S-LAND", "tone": "red", "at": 0.6 }]
+      "camera": [
+        {
+          "at": 0,
+          "mode": "tactics",
+          "blend": 0.7
+        }
+      ],
+      "zones": [
+        {
+          "x": 0.05,
+          "y": 13.6,
+          "w": 9.9,
+          "h": 3.3,
+          "label": "NO-MAN'S-LAND",
+          "tone": "red",
+          "at": 0.6
+        }
+      ]
     },
     {
       "text": "At the net or at the back",
       "say": "Be at the net, 2 to 3 metres from it, or back near the glass. Nowhere in between.",
       "seconds": 5,
       "zones": [
-        { "x": 0.05, "y": 12.0, "w": 9.9, "h": 1.5, "label": "NET", "tone": "green", "at": 0.4 },
-        { "x": 0.05, "y": 17.8, "w": 9.9, "h": 1.6, "label": "BACK", "tone": "green", "at": 0.8 }
+        {
+          "x": 0.05,
+          "y": 12.0,
+          "w": 9.9,
+          "h": 1.5,
+          "label": "NET",
+          "tone": "green",
+          "at": 0.4
+        },
+        {
+          "x": 0.05,
+          "y": 17.8,
+          "w": 9.9,
+          "h": 1.6,
+          "label": "BACK",
+          "tone": "green",
+          "at": 0.8
+        }
       ],
-      "players": { "A1": [6.9, 12.8], "A2": [3.1, 12.8] },
+      "players": {
+        "A1": [
+          6.9,
+          12.8
+        ],
+        "A2": [
+          3.1,
+          12.8
+        ]
+      },
       "moveAt": 1.4,
       "moveDur": 1.0
     },
@@ -44,16 +145,80 @@
       "text": "Go all the way, together",
       "say": "Going forward? Go all the way, together. Get lobbed? Go back, together.",
       "seconds": 5.5,
-      "players": { "A1": [6.9, 18.4], "A2": [3.1, 18.4], "B1": [3.1, 2.2], "B2": [6.9, 2.2] },
+      "players": {
+        "A1": [
+          6.9,
+          18.4
+        ],
+        "A2": [
+          3.1,
+          18.4
+        ],
+        "B1": [
+          3.1,
+          2.2
+        ],
+        "B2": [
+          6.9,
+          2.2
+        ]
+      },
       "moveDur": 0.4,
       "keys": [
-        { "at": 1.2, "dur": 1.1, "to": { "A1": [6.9, 12.9], "A2": [3.1, 12.9] } },
-        { "at": 3.3, "dur": 1.2, "to": { "A1": [6.9, 18.2], "A2": [3.1, 18.2] } }
+        {
+          "at": 1.2,
+          "dur": 1.1,
+          "to": {
+            "A1": [
+              6.9,
+              12.9
+            ],
+            "A2": [
+              3.1,
+              12.9
+            ]
+          }
+        },
+        {
+          "at": 3.3,
+          "dur": 1.2,
+          "to": {
+            "A1": [
+              6.9,
+              18.2
+            ],
+            "A2": [
+              3.1,
+              18.2
+            ]
+          }
+        }
       ],
-      "zones": [{ "x": 0.05, "y": 13.6, "w": 9.9, "h": 3.3, "tone": "red", "at": 0 }],
+      "zones": [
+        {
+          "x": 0.05,
+          "y": 13.6,
+          "w": 9.9,
+          "h": 3.3,
+          "tone": "red",
+          "at": 0
+        }
+      ],
       "shots": [
-        { "by": "A2", "type": "lob", "at": 0.7 },
-        { "by": "B1", "type": "lob", "at": 3.0, "to": [4.2, 18.8] }
+        {
+          "by": "A2",
+          "type": "lob",
+          "at": 0.7
+        },
+        {
+          "by": "B1",
+          "type": "lob",
+          "at": 3.0,
+          "to": [
+            4.2,
+            18.8
+          ]
+        }
       ]
     },
     {
