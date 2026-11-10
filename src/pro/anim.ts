@@ -277,8 +277,7 @@ export const isBoard = (s: ProScene) => (s.style ?? "board") === "board";
 const boardCam = (s: ProScene, key: CamKey, T: number): CamState => {
   let fx = 0, fz = 0, zoom = 0;
   if (key.mode === "follow") {
-    const b = ballAt(s, T) ?? ballAt(s, T - 0.3);
-    if (b) { [fx, fz] = W3(b[0], b[2]); zoom = 1.3; }
+    // the board already shows the whole rally: follow stays on the full view
   } else if ((key.mode === "side" || key.mode === "behind") && key.target) {
     const [px, py] = position(s, key.target, T);
     [fx, fz] = W3(px, py); zoom = key.mode === "side" ? 1.5 : 1.3;

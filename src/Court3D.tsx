@@ -238,12 +238,14 @@ export const Zone: React.FC<{ zone: NonNullable<Scene["beats"][number]["zone"]>;
     ctx.fillStyle = fill; ctx.fillRect(0, 0, cw, ch);
     ctx.setLineDash([22, 14]); ctx.lineWidth = 8; ctx.strokeStyle = stroke; ctx.strokeRect(4, 4, cw - 8, ch - 8);
     if (zone.label) {
-      const size = Math.min(54, (cw * 0.9) / (zone.label.length * 0.62));
+      const size = Math.min(54, (cw * 0.5) / (zone.label.length * 0.62), ch * 0.8);
+      // tall zones: label along the top edge, clear of players standing in the middle
+      const ly = ch > size * 3 ? size * 0.75 + 14 : ch / 2;
       ctx.font = `900 ${size}px Inter, Helvetica, Arial, sans-serif`;
       ctx.textAlign = "center"; ctx.textBaseline = "middle";
       ctx.lineWidth = size * 0.18; ctx.strokeStyle = "rgba(11,18,32,0.85)"; ctx.setLineDash([]);
-      ctx.strokeText(zone.label, cw / 2, ch / 2);
-      ctx.fillStyle = stroke; ctx.fillText(zone.label, cw / 2, ch / 2);
+      ctx.strokeText(zone.label, cw / 2, ly);
+      ctx.fillStyle = stroke; ctx.fillText(zone.label, cw / 2, ly);
     }
   }, w, h, [zone.x, zone.y, zone.w, zone.h, zone.label, fill, stroke]);
   const [x, z] = W([zone.x + zone.w / 2, zone.y + zone.h / 2]);
